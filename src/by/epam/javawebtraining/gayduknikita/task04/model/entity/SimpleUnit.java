@@ -4,26 +4,31 @@ import java.util.Objects;
 
 public class SimpleUnit extends AbstractUnit {
     private String text;
-    private SimpleUnitType unitType;
+    private UnitType unitType;
 
     /**
      * This enum contain type of basic text unit. We can use it to understand,
      * what type of text contained inside object of SimpleUnit.
      */
-    public enum SimpleUnitType {
+    public enum UnitType {
         WORD,
         PUNCTUATION_MARK,
-        CODE_BLOCK
+        CODE_BLOCK,
+        SPACE,
+        EMPTY_STRING,
+        NEW_ROW,
+        TABULATION
     }
 
     public SimpleUnit() {
 
     }
 
-    public SimpleUnit(String text, SimpleUnitType unitType) {
+    public SimpleUnit(String text, UnitType unitType) {
         this.text = text;
         this.unitType = unitType;
     }
+
 
     public void setText(String text) {
         this.text = text;
@@ -33,11 +38,11 @@ public class SimpleUnit extends AbstractUnit {
         return text;
     }
 
-    public void setUnitType(SimpleUnitType unitType) {
+    public void setUnitType(SimpleUnit.UnitType unitType) {
         this.unitType = unitType;
     }
 
-    public SimpleUnitType getUnitType() {
+    public SimpleUnit.UnitType getUnitType() {
         return unitType;
     }
 
