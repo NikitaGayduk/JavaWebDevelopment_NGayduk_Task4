@@ -65,6 +65,10 @@ public class SimpleUnit extends AbstractUnit {
     }
 
     public String toString() {
-        return getText();
+        if (this.text != null) {
+            return getText();
+        } else {
+            return null;
+        }
     }
 }
