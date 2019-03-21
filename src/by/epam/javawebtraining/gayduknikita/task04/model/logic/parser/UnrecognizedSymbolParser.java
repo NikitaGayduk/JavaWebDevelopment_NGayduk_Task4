@@ -6,8 +6,8 @@ import by.epam.javawebtraining.gayduknikita.task04.model.entity.SimpleUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SpaceParser extends AbstractParser {
-    private static final String REGEX = "^ ";
+public class UnrecognizedSymbolParser extends AbstractParser {
+    private static final String REGEX = "^.";
     private static final Pattern pattern = Pattern.compile(REGEX);
 
     private Matcher matcher = pattern.matcher("");

@@ -6,24 +6,15 @@ import java.util.Objects;
 public class CompositeUnit extends AbstractUnit {
 
     private ArrayList<AbstractUnit> unitList;
-    private UnitType unitType;
 
-    /**
-     * This enum contain type of composite text unit. We can use it to understand,
-     * what type of text contained inside object of CompositeUnit.
-     */
-    public enum UnitType {
-        TEXT,
-        PARAGRAPH,
-        SENTENCE
-    }
 
     public CompositeUnit() {
         unitList = new ArrayList<>();
     }
 
-    public CompositeUnit(ArrayList<AbstractUnit> unitList) {
+    public CompositeUnit(ArrayList<AbstractUnit> unitList, AbstractUnit.UnitType type) {
         this.unitList = unitList;
+        setUnitType(type);
     }
 
     public void setUnitList(ArrayList<AbstractUnit> unitList) {
@@ -36,14 +27,6 @@ public class CompositeUnit extends AbstractUnit {
 
     public void addUnit(AbstractUnit unit) {
         this.unitList.add(unit);
-    }
-
-    public void setUnitType(CompositeUnit.UnitType unitType) {
-        this.unitType = unitType;
-    }
-
-    public CompositeUnit.UnitType getUnitType() {
-        return unitType;
     }
 
     @Override

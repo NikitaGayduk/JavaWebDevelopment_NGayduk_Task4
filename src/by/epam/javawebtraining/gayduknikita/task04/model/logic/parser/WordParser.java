@@ -10,14 +10,13 @@ public class WordParser extends AbstractParser {
     private static final String REGEX = "^\\w.*?\\b";
     private static final Pattern pattern = Pattern.compile(REGEX);
 
-    private static Matcher matcher = pattern.matcher("");;
+    private Matcher matcher = pattern.matcher("");
 
     @Override
-    public AbstractUnit parse(StringBuilder mutableText) {
-        matcher.reset(mutableText);
+    public AbstractUnit parse(StringBuilder text) {
+        matcher.reset(text);
         if(matcher.find() == true) {
             String result = matcher.group();
-            mutableText.delete(0,result.length());
             return new SimpleUnit(result, SimpleUnit.UnitType.WORD);
         } else {
             return null;
