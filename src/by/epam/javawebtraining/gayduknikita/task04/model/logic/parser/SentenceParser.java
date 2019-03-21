@@ -8,16 +8,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SentenceParser extends AbstractParser {
-    private static final String REGEX = "^[A-Z].*?(\\.\\.\\.|!|\\?|\\.)";
+    private static final String REGEX;// = "^[A-Z].*?(\\.\\.\\.|!|\\?|\\.)";
 
-    private static final Pattern pattern; //= Pattern.compile(REGEX);
+    private static final Pattern pattern = Pattern.compile(REGEX);
 
     private static final AbstractUnit.UnitType returningType = AbstractUnit.UnitType.SENTENCE;
 
     private Matcher matcher = pattern.matcher("");
 
-    public SentenceParser() {
-        super(REGEX,)
+    public SentenceParser(){
+        REGEX = "^[A-Z].*?(\\.\\.\\.|!|\\?|\\.)";
     }
 
     public SentenceParser(AbstractParser nextParser) {
@@ -43,10 +43,9 @@ public class SentenceParser extends AbstractParser {
                     unit = getNextParser().parse(sentence);
                     if (unit != null) {
                         ((CompositeUnit)result).addUnit(unit);
-
                         //TODO: if regex start without ^ this will work wrong
                         sentence.delete(0, unit.toString().length()); // TODO: 21.03.2019 think, maybe better add int charSize in AbstractUnit
-                    } else if(!changeNextParser() && unit == null){
+                    } else if(!changeNextParser()){
                         sentence.delete(0,1);
                     }
                 }

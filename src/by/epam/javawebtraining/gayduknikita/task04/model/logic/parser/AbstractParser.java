@@ -9,8 +9,7 @@ public abstract class AbstractParser {
 
     private ArrayList<AbstractParser> followingParsers;
     private int currentNextParser = 0;
-    
-    // TODO: 21.03.2019
+
     private int triedParsersCount = 1;
 
     public AbstractParser() {
@@ -36,19 +35,27 @@ public abstract class AbstractParser {
         return followingParsers.get(currentNextParser);
     }
 
-    public void changeNextParser(){
+    /**
+     * This method cyclically switch contained references on following parsers. If all parsers have been tried,
+     * this method will return false and go on next circle.
+     */
+    public boolean changeNextParser(){
         if (currentNextParser < followingParsers.size()-1){
             currentNextParser++;
         } else {
             currentNextParser = 0;
         }
         triedParsersCount++;
+
+        if (triedParsersCount > followingParsers.size()){
+            triedParsersCount = 1;
+            return false;
+        }
+
+        return true;
     }
 
-    // TODO: 21.03.2019
-    public boolean isAllTried(){
-        return triedParsersCount == followingParsers.size();
-    }
+
 
     public abstract AbstractUnit parse(StringBuilder text);
 
