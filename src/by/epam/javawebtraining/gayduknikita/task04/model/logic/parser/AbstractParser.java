@@ -18,6 +18,6 @@ public abstract class AbstractParser {
         this.nextParser = nextParser;
     }
 
-    public abstract  AbstractUnit parse(String textFragment);
+    public abstract  AbstractUnit parse(StringBuilder mutableText);
 
 }

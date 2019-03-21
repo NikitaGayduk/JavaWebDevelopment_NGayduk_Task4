@@ -6,11 +6,11 @@ import by.epam.javawebtraining.gayduknikita.task04.model.entity.SimpleUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class WordParser extends AbstractParser {
-    private static final String REGEX = "^\\w.*?\\b";
+public class SpaceParser extends AbstractParser {
+    private static final String REGEX = "^ ";
     private static final Pattern pattern = Pattern.compile(REGEX);
 
-    private static Matcher matcher = pattern.matcher("");;
+    private Matcher matcher = pattern.matcher("");;
 
     @Override
     public AbstractUnit parse(StringBuilder mutableText) {
