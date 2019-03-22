@@ -1,25 +1,12 @@
 package by.epam.javawebtraining.gayduknikita.task04.model.logic.parser;
 
 import by.epam.javawebtraining.gayduknikita.task04.model.entity.AbstractUnit;
-import by.epam.javawebtraining.gayduknikita.task04.model.entity.SimpleUnit;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+public class WordParser extends BaseParser {
+    public static final String REGEX = "^[A-Z].*?(\\.\\.\\.|!|\\?|\\.)";
+    private static final AbstractUnit.UnitType returningType = AbstractUnit.UnitType.WORD;
 
-public class WordParser extends AbstractParser {
-    private static final String REGEX = "^\\w.*?\\b";
-    private static final Pattern pattern = Pattern.compile(REGEX);
-
-    private Matcher matcher = pattern.matcher("");
-
-    @Override
-    public AbstractUnit parse(StringBuilder text) {
-        matcher.reset(text);
-        if(matcher.find() == true) {
-            String result = matcher.group();
-            return new SimpleUnit(result, SimpleUnit.UnitType.WORD);
-        } else {
-            return null;
-        }
+    public WordParser() {
+        super(REGEX, returningType);
     }
 }

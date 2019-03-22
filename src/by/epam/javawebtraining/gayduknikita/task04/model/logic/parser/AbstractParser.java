@@ -9,26 +9,19 @@ public abstract class AbstractParser {
 
     private ArrayList<AbstractParser> followingParsers;
     private int currentNextParser = 0;
-
     private int triedParsersCount = 1;
+
+
 
     public AbstractParser() {
         followingParsers = new ArrayList<>();
-    }
-
-    public AbstractParser(AbstractParser ... followingParsers) {
-        this.followingParsers = new ArrayList<>(Arrays.asList(followingParsers));
-    }
-
-    public AbstractParser(ArrayList<AbstractParser> followingParsers) {
-        this.followingParsers = followingParsers;
     }
 
     public void addParser(AbstractParser parser) {
         this.followingParsers.add(parser);
     }
 
-    public AbstractParser getNextParser() {
+    protected AbstractParser getNextParser() {
         if(followingParsers.isEmpty()){
             return null;
         }
@@ -39,7 +32,7 @@ public abstract class AbstractParser {
      * This method cyclically switch contained references on following parsers. If all parsers have been tried,
      * this method will return false and go on next circle.
      */
-    public boolean changeNextParser(){
+    protected boolean changeNextParser(){
         if (currentNextParser < followingParsers.size()-1){
             currentNextParser++;
         } else {
@@ -53,6 +46,10 @@ public abstract class AbstractParser {
         }
 
         return true;
+    }
+
+    protected void tryCountReset(){
+        triedParsersCount = 1;
     }
 
 

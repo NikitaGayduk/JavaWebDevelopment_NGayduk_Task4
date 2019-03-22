@@ -17,7 +17,8 @@ public abstract class AbstractUnit {
         SPACE,
         EMPTY_STRING,
         NEW_ROW,
-        TABULATION
+        TABULATION,
+        UNRECOGNIZED_SYMBOL
     }
 
     public void setUnitType(UnitType unitType) {
