@@ -16,7 +16,7 @@ public abstract class AbstractUnit {
         CODE_BLOCK,
         SPACE,
         EMPTY_STRING,
-        NEW_ROW,
+        NEW_LINE,
         TABULATION,
         UNRECOGNIZED_SYMBOL
     }

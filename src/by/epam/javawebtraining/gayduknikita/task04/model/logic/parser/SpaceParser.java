@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class SpaceParser extends BaseParser {
     private static final String REGEX = "^ ";
-    private static final AbstractUnit.UnitType returningType = AbstractUnit.UnitType.SENTENCE;
+    private static final AbstractUnit.UnitType returningType = AbstractUnit.UnitType.SPACE;
 
     public SpaceParser() {
         super(REGEX, returningType);
