@@ -14,6 +14,11 @@ public class SimpleUnit extends AbstractUnit {
         setUnitType(type);
     }
 
+    public SimpleUnit(SimpleUnit unit) {
+        this.text = unit.text;
+        this.setUnitType(unit.getUnitType());
+    }
+
 
     public void setText(String text) {
         this.text = text;

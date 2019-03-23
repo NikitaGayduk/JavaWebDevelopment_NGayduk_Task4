@@ -17,6 +17,17 @@ public class CompositeUnit extends AbstractUnit {
         setUnitType(type);
     }
 
+    public CompositeUnit(CompositeUnit compositeUnit) {
+        this();
+        for(AbstractUnit ptr : compositeUnit.unitList){
+            if (ptr instanceof SimpleUnit){
+                this.unitList.add(new SimpleUnit((SimpleUnit)ptr));
+            } else if (ptr instanceof CompositeUnit){
+                this.unitList.add(new CompositeUnit((CompositeUnit)ptr));
+            }
+        }
+    }
+
     public void setUnitList(ArrayList<AbstractUnit> unitList) {
         this.unitList = unitList;
     }

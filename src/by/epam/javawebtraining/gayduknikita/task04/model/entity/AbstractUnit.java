@@ -1,13 +1,14 @@
 package by.epam.javawebtraining.gayduknikita.task04.model.entity;
 
 public abstract class AbstractUnit {
-    private UnitType unitType;
+    private UnitType unitType = UnitType.DEFAULT;
 
     /**
      * This enum contain type of text unit. We can use it to understand,
      * what type of text contained inside object.
      */
     public enum UnitType {
+        DEFAULT,
         TEXT,
         PARAGRAPH,
         SENTENCE,

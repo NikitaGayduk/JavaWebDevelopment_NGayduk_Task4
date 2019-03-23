@@ -38,7 +38,7 @@ public class Controller {
     /**
      * This method just for test. It's show, how chain parser works.
      */
-    public void write(){
+    public void write() {
 
         textParser.addParser(paragraphParser);
         textParser.addParser(emptyStringParser);
@@ -54,7 +54,9 @@ public class Controller {
 
         try {
             writer.write(textParser.parse(reader.read()));
-        } catch (IOException e){
+        } catch (NullPointerException e) {
+            System.out.println("Исходные данные не подходят: " + e.getMessage());
+        } catch (IOException e) {
             System.out.println("Исключение: " + e.getMessage());
         }
     }
