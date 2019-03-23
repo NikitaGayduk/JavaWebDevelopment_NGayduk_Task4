@@ -45,7 +45,7 @@ public class SimpleUnit extends AbstractUnit {
         if (this.text != null) {
             return getText();
         } else {
-            return null;
+            return "null";
         }
     }
 }

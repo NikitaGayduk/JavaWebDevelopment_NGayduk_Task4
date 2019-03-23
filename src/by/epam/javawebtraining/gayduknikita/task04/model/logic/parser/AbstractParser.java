@@ -3,10 +3,9 @@ package by.epam.javawebtraining.gayduknikita.task04.model.logic.parser;
 import by.epam.javawebtraining.gayduknikita.task04.model.entity.AbstractUnit;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public abstract class AbstractParser {
-
+    
     private ArrayList<AbstractParser> followingParsers;
     private int currentNextParser = 0;
     private int triedParsersCount = 1;
@@ -26,6 +25,10 @@ public abstract class AbstractParser {
             return null;
         }
         return followingParsers.get(currentNextParser);
+    }
+
+    protected void switchNextParserOnFirst() {
+        currentNextParser = 0;
     }
 
     /**
@@ -48,7 +51,7 @@ public abstract class AbstractParser {
         return true;
     }
 
-    protected void tryCountReset(){
+    protected void triedParsersCountReset(){
         triedParsersCount = 1;
     }
 

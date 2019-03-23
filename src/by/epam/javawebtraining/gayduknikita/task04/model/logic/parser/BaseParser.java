@@ -3,11 +3,13 @@ package by.epam.javawebtraining.gayduknikita.task04.model.logic.parser;
 import by.epam.javawebtraining.gayduknikita.task04.model.entity.AbstractUnit;
 import by.epam.javawebtraining.gayduknikita.task04.model.entity.CompositeUnit;
 import by.epam.javawebtraining.gayduknikita.task04.model.entity.SimpleUnit;
+import org.apache.log4j.Logger;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class BaseParser extends AbstractParser {
+    private static Logger logger = Logger.getRootLogger();
     private String REGEX;
 
     private AbstractUnit.UnitType returningType;
@@ -18,8 +20,9 @@ public class BaseParser extends AbstractParser {
     private Matcher matcher;
 
 
-    protected BaseParser(String regex, AbstractUnit.UnitType returningType) {
+    public BaseParser(String regex, AbstractUnit.UnitType returningType) {
         REGEX = regex;
+        this.returningType = returningType;
         pattern = Pattern.compile(REGEX);
         matcher = pattern.matcher("");
     }
@@ -27,33 +30,47 @@ public class BaseParser extends AbstractParser {
     @Override
     public AbstractUnit parse(StringBuilder text) {
         matcher.reset(text);
+        AbstractUnit result;
 
         if (matcher.find()) {
             StringBuilder parsedText = new StringBuilder();
             parsedText.append(matcher.group());
-            AbstractUnit result;
 
-            if (getNextParser() == null) {
-                result = new SimpleUnit(parsedText.toString(), returningType);
-            } else {
-                result = new CompositeUnit();
-                AbstractUnit unit;
+            result = transferToNextParser(parsedText);
+        } else {
+            result = null;
+        }
+        return result;
+    }
 
-                while (parsedText.length() > 0) {
-                    unit = getNextParser().parse(parsedText);
-                    if (unit != null) {
-                        ((CompositeUnit) result).addUnit(unit);
-                        //TODO: if regex start without ^ this will work wrong
-                        parsedText.delete(0, unit.toString().length()); // TODO: 21.03.2019 think, maybe better add int charSize in AbstractUnit
-                        tryCountReset();
-                    } else if (!changeNextParser()) {
-                        parsedText.delete(0, 1);
-                    }
+    private AbstractUnit transferToNextParser(StringBuilder parsedText){
+        AbstractUnit result;
+
+        if (getNextParser() != null) {
+            result = new CompositeUnit();
+            AbstractUnit unit;
+
+            while (parsedText.length() > 0) {
+                unit = getNextParser().parse(parsedText);
+
+                if (unit != null) {
+                    ((CompositeUnit) result).addUnit(unit);
+
+                    //if regex start without \A this can work wrong
+                    parsedText.delete(0, unit.toString().length()); // TODO: 21.03.2019 think, maybe better add int charSize in AbstractUnit
+                    triedParsersCountReset();
+                } else if (!changeNextParser()) {
+                    ((CompositeUnit) result).addUnit(new SimpleUnit(parsedText.substring(0,1),AbstractUnit.UnitType.UNRECOGNIZED_SYMBOL));
+                    logger.trace("Deleted unresolved symbol " + parsedText.substring(0,1));
+                    parsedText.delete(0, 1);
                 }
             }
-            return result;
+            switchNextParserOnFirst();
+
         } else {
-            return null;
+            result = new SimpleUnit(parsedText.toString(), returningType);
+            logger.trace("Create simple unit. Type: " + returningType + "\n" + result.toString() + "\n");
         }
+        return result;
     }
 }
