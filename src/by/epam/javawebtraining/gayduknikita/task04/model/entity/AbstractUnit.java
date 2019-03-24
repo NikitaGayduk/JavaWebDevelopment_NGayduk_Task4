@@ -2,6 +2,10 @@ package by.epam.javawebtraining.gayduknikita.task04.model.entity;
 
 public abstract class AbstractUnit {
     private UnitType unitType = UnitType.DEFAULT;
+
+    /**
+     * Size contain unit.toString().length();
+     */
     private int size = 0;
 
     /**

@@ -57,16 +57,18 @@ public class BaseParser extends AbstractParser {
                     ((CompositeUnit) result).addUnit(unit);
 
                     //if regex start without \A this can work wrong
-                    parsedText.delete(0, unit.toString().length()); // TODO: 21.03.2019 think, maybe better add int charSize in AbstractUnit
+                    parsedText.delete(0, unit.getSize());
                     triedParsersCountReset();
+
                 } else if (!changeNextParser()) {
-                    ((CompositeUnit) result).addUnit(new SimpleUnit(parsedText.substring(0,1),AbstractUnit.UnitType.UNRECOGNIZED_SYMBOL));
-                    logger.trace("Deleted unresolved symbol " + parsedText.substring(0,1));
+                    ((CompositeUnit) result).addUnit(new SimpleUnit(parsedText.substring(0,1)
+                            ,AbstractUnit.UnitType.UNRECOGNIZED_SYMBOL));
+                    logger.trace("Find unresolved symbol " + parsedText.substring(0,1));
                     parsedText.delete(0, 1);
                 }
             }
             switchNextParserOnFirst();
-
+            logger.trace("Create composite unit. Type: " + returningType + "\n");
         } else {
             result = new SimpleUnit(parsedText.toString(), returningType);
             logger.trace("Create simple unit. Type: " + returningType + "\n" + result.toString() + "\n");
