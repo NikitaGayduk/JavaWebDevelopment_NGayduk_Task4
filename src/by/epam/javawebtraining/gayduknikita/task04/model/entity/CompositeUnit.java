@@ -1,20 +1,22 @@
 package by.epam.javawebtraining.gayduknikita.task04.model.entity;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class CompositeUnit extends AbstractUnit {
 
-    private ArrayList<AbstractUnit> unitList;
+    private List<AbstractUnit> unitList;
 
 
     public CompositeUnit() {
         unitList = new ArrayList<>();
     }
 
-    public CompositeUnit(ArrayList<AbstractUnit> unitList, AbstractUnit.UnitType type) {
+    public CompositeUnit(List<AbstractUnit> unitList, AbstractUnit.UnitType type) {
         this.unitList = unitList;
         setUnitType(type);
+        setSize(countSize());
     }
 
     public CompositeUnit(CompositeUnit compositeUnit) {
@@ -28,16 +30,31 @@ public class CompositeUnit extends AbstractUnit {
         }
     }
 
-    public void setUnitList(ArrayList<AbstractUnit> unitList) {
-        this.unitList = unitList;
+    private int countSize() {
+        int size = 0;
+        for(AbstractUnit ptr : getUnitList()){
+            size += ptr.getSize();
+        }
+        return size;
     }
 
-    public ArrayList<AbstractUnit> getUnitList() {
+    @Override
+    public int getSize() {
+        return countSize();
+    }
+
+    public void setUnitList(List<AbstractUnit> unitList) {
+        this.unitList = unitList;
+        setSize(countSize());
+    }
+
+    public List<AbstractUnit> getUnitList() {
         return unitList;
     }
 
     public void addUnit(AbstractUnit unit) {
         this.unitList.add(unit);
+        setSize(getSize() + unit.getSize());
     }
 
     @Override

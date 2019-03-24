@@ -2,6 +2,7 @@ package by.epam.javawebtraining.gayduknikita.task04.model.entity;
 
 public abstract class AbstractUnit {
     private UnitType unitType = UnitType.DEFAULT;
+    private int size = 0;
 
     /**
      * This enum contain type of text unit. We can use it to understand,
@@ -20,6 +21,14 @@ public abstract class AbstractUnit {
         NEW_LINE,
         TABULATION,
         UNRECOGNIZED_SYMBOL
+    }
+
+    protected void setSize(int size) {
+        this.size = size;
+    }
+
+    public int getSize() {
+        return size;
     }
 
     public void setUnitType(UnitType unitType) {
