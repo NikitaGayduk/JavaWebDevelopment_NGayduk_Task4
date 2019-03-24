@@ -6,7 +6,7 @@ import by.epam.javawebtraining.gayduknikita.task04.model.logic.replacer.replaceb
 import java.util.List;
 
 public class BaseReplacer implements Replacer {
-    ReplaceBehavior behavior = new DefaultReplaceBehavior();
+    private ReplaceBehavior behavior = new DefaultReplaceBehavior();
 
     public BaseReplacer(ReplaceBehavior behavior) {
         this.behavior = behavior;

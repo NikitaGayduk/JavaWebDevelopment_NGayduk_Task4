@@ -6,7 +6,7 @@ public class SimpleUnit extends AbstractUnit {
     private String text;
 
     public SimpleUnit() {
-
+        text = "";
     }
 
     public SimpleUnit(String text, UnitType type) {
