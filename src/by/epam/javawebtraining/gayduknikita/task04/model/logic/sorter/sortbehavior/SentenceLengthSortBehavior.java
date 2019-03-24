@@ -1,8 +1,6 @@
 package by.epam.javawebtraining.gayduknikita.task04.model.logic.sorter.sortbehavior;
 
 import by.epam.javawebtraining.gayduknikita.task04.model.entity.AbstractUnit;
-import by.epam.javawebtraining.gayduknikita.task04.model.logic.searcher.BaseSearcher;
-import by.epam.javawebtraining.gayduknikita.task04.model.logic.searcher.Searcher;
 
 import java.util.Collections;
 import java.util.List;

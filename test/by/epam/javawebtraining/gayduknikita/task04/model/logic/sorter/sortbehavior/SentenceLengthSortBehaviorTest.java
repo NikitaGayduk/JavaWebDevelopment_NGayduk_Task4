@@ -7,6 +7,7 @@ import by.epam.javawebtraining.gayduknikita.task04.model.logic.searcher.BaseSear
 import by.epam.javawebtraining.gayduknikita.task04.model.logic.searcher.Searcher;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class SentenceLengthSortBehaviorTest {
     CompositeUnit compositeUnitInner = new CompositeUnit();
 
 
-    @Before
+    @BeforeClass
     public void setData() {
         compositeUnitInner.addUnit(simpleUnitData[0]);
         compositeUnitInner.addUnit(simpleUnitData[3]);
