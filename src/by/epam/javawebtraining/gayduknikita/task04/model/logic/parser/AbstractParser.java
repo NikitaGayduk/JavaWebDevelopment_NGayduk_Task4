@@ -57,6 +57,6 @@ public abstract class AbstractParser {
 
 
 
-    public abstract AbstractUnit parse(StringBuilder text);
+    public abstract AbstractUnit parse(CharSequence text);
 
 }

@@ -32,6 +32,11 @@ public class SimpleUnit extends AbstractUnit {
     }
 
     @Override
+    public SimpleUnit getCopy() {
+        return new SimpleUnit(this);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

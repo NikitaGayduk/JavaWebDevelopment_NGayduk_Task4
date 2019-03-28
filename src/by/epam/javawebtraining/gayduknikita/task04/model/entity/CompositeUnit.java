@@ -20,19 +20,15 @@ public class CompositeUnit extends AbstractUnit {
     }
 
     public CompositeUnit(CompositeUnit compositeUnit) {
-        this();
-        for(AbstractUnit ptr : compositeUnit.unitList){
-            if (ptr instanceof SimpleUnit){
-                this.unitList.add(new SimpleUnit((SimpleUnit)ptr));
-            } else if (ptr instanceof CompositeUnit){
-                this.unitList.add(new CompositeUnit((CompositeUnit)ptr));
-            }
+        unitList = new ArrayList<>(compositeUnit.unitList.size());
+        for (AbstractUnit ptr : compositeUnit.unitList) {
+            this.unitList.add(ptr.getCopy());
         }
     }
 
     private int countSize() {
         int size = 0;
-        for(AbstractUnit ptr : getUnitList()){
+        for (AbstractUnit ptr : getUnitList()) {
             size += ptr.getSize();
         }
         return size;
@@ -58,15 +54,20 @@ public class CompositeUnit extends AbstractUnit {
     }
 
     @Override
+    public CompositeUnit getCopy() {
+        return new CompositeUnit(this);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()){
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
         CompositeUnit that = (CompositeUnit) o;
-        return Objects.equals(getUnitList(), that.getUnitList());
+        return getUnitList().equals(that.getUnitList());
     }
 
     @Override
@@ -74,10 +75,10 @@ public class CompositeUnit extends AbstractUnit {
         return Objects.hash(getUnitList());
     }
 
-    public String toString(){
+    public String toString() {
         StringBuilder result = new StringBuilder();
 
-        for(AbstractUnit ptr : getUnitList()){
+        for (AbstractUnit ptr : getUnitList()) {
             result.append(ptr);
         }
 

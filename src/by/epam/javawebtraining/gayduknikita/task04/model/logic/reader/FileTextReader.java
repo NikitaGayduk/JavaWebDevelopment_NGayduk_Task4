@@ -17,7 +17,7 @@ public class FileTextReader implements TextReader {
 
 
     @Override
-    public StringBuilder read() throws IOException {
+    public CharSequence read() throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName));) {
             StringBuilder result = new StringBuilder();
             String tmp;

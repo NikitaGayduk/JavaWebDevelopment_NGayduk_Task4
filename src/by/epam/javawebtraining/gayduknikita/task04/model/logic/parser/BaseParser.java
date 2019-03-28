@@ -28,7 +28,7 @@ public class BaseParser extends AbstractParser {
     }
 
     @Override
-    public AbstractUnit parse(StringBuilder text) {
+    public AbstractUnit parse(CharSequence text) {
         matcher.reset(text);
         AbstractUnit result;
 

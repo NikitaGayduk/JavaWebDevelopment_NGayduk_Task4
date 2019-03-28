@@ -13,7 +13,7 @@ public class CodeBlockParser extends BaseParser {
 
 
     @Override
-    public AbstractUnit parse(StringBuilder text) {
+    public AbstractUnit parse(CharSequence text) {
         AbstractUnit result = super.parse(text);
 
         if (result != null) {

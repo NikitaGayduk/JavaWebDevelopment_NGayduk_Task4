@@ -12,9 +12,9 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class SentenceReverseReplaceBehaviorTest {
-    SentenceReverseReplaceBehavior behavior = new SentenceReverseReplaceBehavior();
+    private SentenceReverseReplaceBehavior behavior = new SentenceReverseReplaceBehavior();
 
-    AbstractUnit[] data = {
+    private AbstractUnit[] data = {
             new SimpleUnit("This", AbstractUnit.UnitType.WORD),
             new SimpleUnit("sentence", AbstractUnit.UnitType.WORD),
             new SimpleUnit("was", AbstractUnit.UnitType.WORD),
@@ -24,8 +24,8 @@ public class SentenceReverseReplaceBehaviorTest {
             new SimpleUnit(".", AbstractUnit.UnitType.PUNCTUATION_MARK)
     };
 
-    CompositeUnit sentence = new CompositeUnit();
-    CompositeUnit resultSentence = new CompositeUnit();
+    private CompositeUnit sentence = new CompositeUnit();
+    private CompositeUnit resultSentence = new CompositeUnit();
 
     @Before
     public void setData(){

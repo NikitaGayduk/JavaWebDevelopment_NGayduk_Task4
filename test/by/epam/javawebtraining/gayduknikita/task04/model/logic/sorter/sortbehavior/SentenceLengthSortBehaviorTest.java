@@ -16,10 +16,10 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class SentenceLengthSortBehaviorTest {
-    Searcher searcher = new BaseSearcher();
-    SentenceLengthSortBehavior behavior = new SentenceLengthSortBehavior();
+    private Searcher searcher = new BaseSearcher();
+    private SentenceLengthSortBehavior behavior = new SentenceLengthSortBehavior();
 
-    AbstractUnit[] simpleUnitData = {
+    private static AbstractUnit[] simpleUnitData = {
             new SimpleUnit("Long test sentence fdfdfdf dfdfdffddf dsdsdfsdf gfgfgdfgdfgdfgdg sdfsd."
                     , AbstractUnit.UnitType.SENTENCE),
             new SimpleUnit("Long test sentence fdfdfdf dfdfdffddf dsdsdfsdf gfgfgdfgdfgdfgdg."
@@ -31,12 +31,12 @@ public class SentenceLengthSortBehaviorTest {
     };
 
 
-    CompositeUnit compositeUnitOuter = new CompositeUnit();
-    CompositeUnit compositeUnitInner = new CompositeUnit();
+    private static CompositeUnit compositeUnitOuter = new CompositeUnit();
+    private static CompositeUnit compositeUnitInner = new CompositeUnit();
 
 
     @BeforeClass
-    public void setData() {
+    public static void setData() {
         compositeUnitInner.addUnit(simpleUnitData[0]);
         compositeUnitInner.addUnit(simpleUnitData[3]);
         compositeUnitOuter.addUnit(simpleUnitData[1]);

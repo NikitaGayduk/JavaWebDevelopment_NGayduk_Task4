@@ -43,6 +43,8 @@ public abstract class AbstractUnit {
         return unitType;
     }
 
+    abstract public AbstractUnit getCopy();
+
     abstract public String toString();
 
 }

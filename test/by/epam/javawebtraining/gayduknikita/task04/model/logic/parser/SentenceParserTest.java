@@ -8,12 +8,12 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class SentenceParserTest {
-    AbstractParser sentenceParser = new SentenceParser();
-    AbstractParser wordParser = new WordParser();
-    AbstractParser punctuationParser = new PunctuationParser();
-    AbstractParser spaceParser = new SpaceParser();
+    private AbstractParser sentenceParser = new SentenceParser();
+    private AbstractParser wordParser = new WordParser();
+    private AbstractParser punctuationParser = new PunctuationParser();
+    private AbstractParser spaceParser = new SpaceParser();
 
-    StringBuilder testSentence = new StringBuilder("Sentence for test.");
+    private StringBuilder testSentence = new StringBuilder("Sentence for test.");
 
 
     @Test

@@ -12,8 +12,8 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class BaseSearcherTest {
-    Searcher searcher = new BaseSearcher();
-    AbstractUnit[] simpleUnitData = {
+    private Searcher searcher = new BaseSearcher();
+    private AbstractUnit[] simpleUnitData = {
             new SimpleUnit("Long"
                     , AbstractUnit.UnitType.WORD),
             new SimpleUnit("."
@@ -24,8 +24,8 @@ public class BaseSearcherTest {
                     , AbstractUnit.UnitType.SENTENCE)
     };
 
-    CompositeUnit compositeUnitOuter = new CompositeUnit();
-    CompositeUnit compositeUnitInner = new CompositeUnit();
+    private CompositeUnit compositeUnitOuter = new CompositeUnit();
+    private CompositeUnit compositeUnitInner = new CompositeUnit();
 
 
     @Before
